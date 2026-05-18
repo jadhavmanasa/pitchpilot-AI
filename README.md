@@ -56,6 +56,8 @@ Styling:
 npm install
 ```
 
+---
+
 ## 📸 Screenshots
 
 ### Landing Page
@@ -72,3 +74,14 @@ npm install
 
 ### Investor Analytics
 ![Analytics](./screenshots/slides2.png)
+
+---
+
+## 👥 Team
+
+Built collaboratively during the hackathon by:
+
+- Sangishetty Swethanjali
+- Teammate Name-BinaryBrains
+
+---
