@@ -19,6 +19,7 @@ import { PitchDeck, SlideTemplateId } from "../types";
 import SlideRenderer from "../components/deck/SlideRenderer";
 import { resolveDeckImages } from "../lib/slideImages";
 import { slideTemplates } from "../lib/slideTemplates";
+import { buildLocalFallbackDeck } from "../lib/fallbackDeck";
 
 const industries = ["SaaS", "Fintech", "Healthtech", "AI/ML", "Consumer", "B2B Enterprise", "Marketplace", "Web3/Crypto"];
 const stages = ["Pre-seed", "Seed", "Series A", "Series B"];
@@ -80,26 +81,41 @@ export default function GenerateDeck() {
     setGenerationError("");
 
     try {
-      const response = await fetch("/api/generate-deck", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      let data: Omit<PitchDeck, "id" | "createdAt">;
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || "Failed to generate the deck.");
+      try {
+        const response = await fetch("/api/generate-deck", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+          throw new Error(errorData?.error || "Server deck generation is unavailable.");
+        }
+
+        data = await response.json();
+      } catch (apiError) {
+        console.warn("Server deck generation failed, using local fallback deck.", apiError);
+        data = buildLocalFallbackDeck(formData);
       }
 
-      const data = await response.json();
       const newDeck: PitchDeck = {
         id: Math.random().toString(36).substring(7),
         createdAt: new Date().toISOString(),
         ...data,
+        industry: data.industry || formData.industry,
         templateId: formData.templateId,
       };
       setGenerationPhase("images");
-      const deckWithImages = await resolveDeckImages(newDeck);
+      let deckWithImages = newDeck;
+
+      try {
+        deckWithImages = await resolveDeckImages(newDeck);
+      } catch (imageError) {
+        console.warn("Slide image preloading failed, continuing with generated image URLs.", imageError);
+      }
 
       saveDeck(deckWithImages);
       setCurrentSlideIndex(0);

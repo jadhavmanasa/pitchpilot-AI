@@ -460,6 +460,8 @@ function buildFallbackDeck({
 
   return {
     startupName,
+    industry,
+    stage,
     slides: slides.map((slide) => ({
       ...slide,
       imagePrompt: baseImagePrompt,
