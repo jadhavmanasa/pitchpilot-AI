@@ -1,0 +1,10 @@
+{
+  "name": "PitchPilot AI",
+  "description": "AI-powered platform that generates investor-ready startup pitch decks from a simple idea.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

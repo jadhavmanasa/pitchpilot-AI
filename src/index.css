@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0d1117;
+  --color-panel: #111820;
+  --color-panel-soft: #16212b;
+  --color-line: rgba(148, 163, 184, 0.18);
+  --color-brand: #14b8a6;
+  --color-brand-strong: #0f766e;
+  --color-accent: #f59e0b;
+  --color-coral: #fb7185;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #f7faf9;
+}
+
+body {
+  @apply m-0 text-slate-100 antialiased font-sans;
+  min-width: 320px;
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, transparent 30%),
+    linear-gradient(45deg, rgba(245, 158, 11, 0.07) 0%, transparent 34%),
+    #f7faf9;
+}
+
+::selection {
+  @apply bg-teal-500/25 text-slate-950;
+}
+
+input,
+textarea,
+select {
+  @apply caret-teal-500;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-bg {
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    #f7faf9;
+  background-size: 28px 28px;
+}
+
+.glass {
+  @apply border border-white/20 bg-white/70 shadow-sm backdrop-blur-2xl;
+}
+
+.panel {
+  @apply rounded-2xl border border-slate-200/80 bg-white/85 shadow-sm shadow-slate-200/60 backdrop-blur-xl;
+}
+
+.panel-dark {
+  @apply rounded-2xl border border-white/10 bg-slate-950/90 shadow-2xl shadow-slate-950/20;
+}
+
+.eyebrow {
+  @apply text-[11px] font-extrabold uppercase tracking-[0.18em] text-teal-700;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-sky-600 to-rose-500 font-extrabold;
+}
+
+.glow-btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-extrabold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-700/20 active:translate-y-0 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.secondary-btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-teal-200 hover:text-teal-700 active:translate-y-0;
+}
+
+.icon-btn {
+  @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-all hover:border-teal-200 hover:text-teal-700 active:scale-95;
+}
+
+.slide-container {
+  aspect-ratio: 16 / 9;
+  @apply relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-2xl shadow-slate-950/15;
+}
+
+.sleek-card {
+  @apply rounded-2xl border border-slate-200/80 bg-white/90 p-6 shadow-sm shadow-slate-200/70 transition-all duration-300;
+}
+
+.sleek-card:hover {
+  @apply border-teal-200 shadow-lg shadow-teal-900/5;
+}
+
+.active-glow {
+  @apply border-teal-200 bg-teal-50 text-teal-900 shadow-sm;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  @apply outline-none ring-2 ring-teal-500/50 ring-offset-2 ring-offset-white;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-300 hover:bg-slate-400;
+}
