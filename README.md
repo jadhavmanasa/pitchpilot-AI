@@ -82,6 +82,4 @@ npm install
 Built collaboratively during the hackathon by:
 
 - Sangishetty Swethanjali
-- Teammate Name-BinaryBrains
-
 ---
