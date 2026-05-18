@@ -41,12 +41,3 @@ Styling:
 - Tailwind CSS
 
 ---
-
-## 📂 Project Structure
-
-``` id="rd2ryx"
-src/
-components/
-pages/
-services/
-assets/
